@@ -6,13 +6,13 @@
 
 ## 接入自定义组件
 
-###  新建文件夹
+### 新建文件夹
 
 在src/comps目录下任意位置新建一个文件夹，例如：src/comps/MyComp（这个文件夹用于存放所有与你组件相关的信息）
 
-###  新建文件
+### 新建文件
 
-在light chaser中接入组件一共设计到4个必要的文件，分别是：
+在light chaser中接入组件一共涉及到4个必要类型的文件，分别是：
 
 - definition.ts: 自定义组件信息定义文件，用于定义自定义组件的所有基础信息和配置信息
 - controller.ts: 自定义组件控制器，用于管理自定义组件的整个生命周期，后续所有对自定义组件的操作都要依赖于这个文件的实例对象，所以理解他十分重要！
@@ -24,7 +24,7 @@
 
 ![custom-component.png](https://picdl.sunbangyan.cn/2023/11/05/a5cc56bdd239099c5585a4b82cedbc71.png)
 
-###  component.tsx
+### component.tsx
 
 component.tsx就是一个普通的react组件，其完整结构和说明如下
 
@@ -34,7 +34,10 @@ import React, {Component} from 'react';
 /**
  * 这个style定义将作为自定义组件后续样式更新的基础（请留意这个style在后续的使用）
  */
-export interface DemoComponentStyle {
+export
+interface
+DemoComponentStyle
+{
     color ? : string;
 }
 
@@ -75,7 +78,10 @@ import {ComponentInfoType} from "../common-component/common-types";
  * 1. 请注意，style的类型使用的就是component.tsx中定义的DemoComponentStyle，因为这部分配置将直接影响组件的样式
  * 2. 关于info和data的具体定义请自行查看其详细内容
  */
-export interface DemoComponentProps {
+export
+interface
+DemoComponentProps
+{
     info: ComponentInfoType;
     style: DemoComponentStyle;
     data: DataConfigType;
