@@ -9,5 +9,5 @@ github的[issue](https://github.com/xiaopujun/light-chaser/issues)或者gitee的
 
 <div style="display: flex">
     <div style="padding: 20px"><img alt="me" src="https://picdl.sunbangyan.cn/2023/11/05/a7ccc0b5df28f551527b25ff792dead7.jpg"></div>
-    <div style="padding: 20px"><img alt="group" src="https://picdl.sunbangyan.cn/2023/11/13/7951001ae8a8063c53918e6d3e1d69cd.jpg"></div>
+    <div style="padding: 20px"><img alt="group" src="https://picdl.sunbangyan.cn/2023/11/19/6f443419a39cd202ab750ada74e04d77.jpg"></div>
 </div>

@@ -1,3 +1,12 @@
+## [v0.0.7](https://github.com/xiaopujun/light-chaser/releases/tag/v0.0.7)
+
+#### Features
+
+- 新增图层分组功能
+- 支持拖拽方式添加组件到画布
+- 支持monaco编辑器在内网使用
+
+
 ## [v0.0.6](https://github.com/xiaopujun/light-chaser/releases/tag/v0.0.6)
 
 #### Features
