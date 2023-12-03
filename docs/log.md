@@ -5,14 +5,14 @@
 - 新增分组图层设置面板
 - 新增图层列表支持右键菜单
 
-## Optimize
+#### Optimize
 
 - 优化蓝图性能,
 - 优化图层列表操作体验
 - 优化画布组件拖拽体验，支持shift固定方向拖拽
 - 优化代码结构与命名 （broken change）
 
-## Bug Fixes
+#### Bug Fixes
 
 - 修复撤销与重做相关bug
 - 修复快捷键相关bug
