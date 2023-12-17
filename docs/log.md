@@ -1,11 +1,38 @@
+## [v0.0.9](https://github.com/xiaopujun/light-chaser/releases/tag/v0.0.9)
+
+发布时间：2023-12-17
+
+#### Features:
+
+1. 新增配置项模板控件
+2. 新增基础表格组件
+
+#### Bug Fixes：
+
+1. 修复多层级图层复制后图层出现混乱的bug
+2. 修复删除元素后undo、redo操作不连续的bug
+3. 修复加载设计器数据后默认主题丢失的bug
+4. 修复双击添加组件失效的bug
+
+#### Enhancement：
+
+1. vite4升级到vite5
+2. React17升级到React18
+3. 优化项目代码结构和命名风格
+4. 优化数据操作接口，同时支持操作本地数据和服务器数据
+5. 优化预览模式下组件数据加载时机
+6. 优化预览模式下组件数据加载异常时，异常提示信息的渲染
+
 ## [v0.0.8](https://github.com/xiaopujun/light-chaser/releases/tag/v0.0.8)
+
+发布时间：2023-11-24
 
 #### Features
 
 - 新增分组图层设置面板
 - 新增图层列表支持右键菜单
 
-#### Optimize
+#### Enhancement
 
 - 优化蓝图性能,
 - 优化图层列表操作体验
@@ -21,6 +48,8 @@
 
 ## [v0.0.7](https://github.com/xiaopujun/light-chaser/releases/tag/v0.0.7)
 
+发布时间：2023-11-19
+
 #### Features
 
 - 新增图层分组功能
@@ -28,6 +57,8 @@
 - 支持monaco编辑器在内网使用
 
 ## [v0.0.6](https://github.com/xiaopujun/light-chaser/releases/tag/v0.0.6)
+
+发布时间：2023-11-7
 
 #### Features
 
@@ -39,5 +70,7 @@
 - 修复标尺刻度在画布反复缩放后出现误差的bug
 
 ## [v0.0.5](https://github.com/xiaopujun/light-chaser/releases/tag/v0.0.5)
+
+发布时间：2023-9-12
 
 - 完成主编辑器的基础功能
