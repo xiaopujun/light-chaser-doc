@@ -1,306 +1,629 @@
-> 注: 本文主要针对开发者接入自己的组件到设计器这一场景
+> 注: 本文主要针对开发者
 
-## 准备
+## 核心文件及接口概念
 
-请按照快速开始章节的步骤，将设计器跑起来。
+在LIGHT CHASER接入自定义组件的过程中一共涉及到5个必须的文件，分别是：
 
-## 接入自定义组件
+- definition.ts: 自定义组件信息定义文件，用于定义自定义组件的所有基础信息和初始配置数据
 
-### 新建文件夹
+- controller.ts: 自定义组件控制器，用于管理自定义组件的整个生命周期，后续所有对自定义组件的操作都要依赖于controller文件的实例对象，所以理解他十分重要！
 
-在src/comps目录下任意位置新建一个文件夹，例如：src/comps/MyComp（这个文件夹用于存放所有与你组件相关的信息）
+- component.tsx: 自定义的React组件，用于渲染自定义组件的UI，本质上和普通的React组件没有任何区别。事实上这个文件是非必须的，除非你完全自己实现React组件。
+  对于像Echarts、G2这样的图表库而言，它们有自己的API可以直接创建页面元素
 
-### 新建文件
+- config.tsx: 自定义组件的右侧配置面板，用于配置自定义组件的属性，本质上也是一个普通的React组件
 
-在light chaser中接入组件一共涉及到4个必要类型的文件，分别是：
-
-- definition.ts: 自定义组件信息定义文件，用于定义自定义组件的所有基础信息和配置信息
-- controller.ts: 自定义组件控制器，用于管理自定义组件的整个生命周期，后续所有对自定义组件的操作都要依赖于这个文件的实例对象，所以理解他十分重要！
-- component.tsx: 自定义的React组件，用于渲染自定义组件的UI
-- config.tsx: 自定义组件的右侧配置面板，用于配置自定义组件的属性
-- preview.png/jpg: 自定义组件的预览图，用于在设计器中展示自定义组件的样式
+- preview.png/jpg: 自定义组件的预览图，用于在设计器的组件列表中展示自定义组件的缩略图
 
 如下图所示：
 
 ![custom-component.png](https://picdl.sunbangyan.cn/2023/11/05/a5cc56bdd239099c5585a4b82cedbc71.png)
 
-### component.tsx
+### controller定义说明
 
-component.tsx就是一个普通的react组件，其完整结构和说明如下
+controller接口为LIGHT CHASER自定义组件接入的核心接口之一，他定义操作自定义组件生命周期的一系列标准方法。包括创建组件、修改组件配置，触发组件重新渲染等。其详细的定义如下：
 
-```js
-import React, {Component} from 'react';
+> 注：controller存在一个抽象接口的继承体系，其中AbstractController是最顶级的抽象接口，其下为了功能扩展会派生出一些子接口：其中最为重要的便是AbstractDesignerController
 
-/**
- * 这个style定义将作为自定义组件后续样式更新的基础（请留意这个style在后续的使用）
- */
-export
-interface
-DemoComponentStyle
-{
-    color ? : string;
+#### AbstractController定义
+
+```ts
+export interface UpdateOptions {
+    reRender: boolean;
 }
 
 /**
- * 这里使用class组件，你使用hook组件也没问题，只要后续你建立的controller能控制你组件的创建，更新，销毁即可
- * ps: class组件在这个场景下就尤为方便，只需拿到该组件的this指针即可
- * 除此上面提到的，这个组件和普通的react组件没有任何本质上的区别
+ * 设计器自定义组件控制器的顶级抽象接口，用于控制自定义组件的整个生命周期
+ * @param I 组件实例类型，若组件为React的class组件，则I=class的实例化对象。
+ * 若组件为React的函数式组件，则I=forwardRef钩子传递出的ref引用（当然你也可以有其他自定义的实现）
+ * 若组件为纯Js实现的组件，则I=组件实例化对象（可参考Echarts活G2创建实例后的返回值）
+ * @param C 组件配置类型，即组件的完整属性类型
  */
-class DemoComponent extends Component {
-    render() {
-        return (
-            <div style={{fontSize: 20, color: 'blue', textAlign: "center", width: '100%', height: '100%'}}>
-                这是一个测试组件
-            </div>
-        );
-    }
-}
-
-export default DemoComponent;
-```
-
-### controller.ts
-
-controller.ts是自定义组件的声明周期控制器，它将接手你自定义组件的创建、更新、销毁等操作，其完整结构和说明如下
-
-```js
-import AbstractDesignerController from "../../framework/core/AbstractDesignerController";
-import DemoComponent, {DemoComponentStyle} from "./DemoComponent";
-import ComponentUtil from "../../utils/ComponentUtil";
-import {DataConfigType, ThemeItemType} from "../../designer/DesignerType";
-import ObjectUtil from "../../utils/ObjectUtil";
-import {OperateType, UpdateOptions} from "../../framework/core/AbstractController";
-import {ComponentInfoType} from "../common-component/common-types";
-
-/**
- * 这是自定义组件所有配置项的完整定义，其中包括了他的基础信息和样式和数据，当然你还可以在这个基础上继续扩展，只不过这3个是必须的
- * ps：
- * 1. 请注意，style的类型使用的就是component.tsx中定义的DemoComponentStyle，因为这部分配置将直接影响组件的样式
- * 2. 关于info和data的具体定义请自行查看其详细内容
- */
-export
-interface
-DemoComponentProps
-{
-    info: ComponentInfoType;
-    style: DemoComponentStyle;
-    data: DataConfigType;
-}
-
-/**
- * 自定义组件的控制器，这里继承了AbstractDesignerController，这个类中定义了一些组件的基础方法，比如create、destroy、update等，接入时候按照要求复写完所有方法即可
- * AbstractDesignerController中需要传递两个泛型参数，
- * - 第一个是自定义的React组件，也就是我梦上一个文件定义的DemoComponent
- * - 第二个是自定义组件的完整配置项，也就是上面定义的BaseTextComponentProps
- */
-export class DemoController extends AbstractDesignerController<DemoComponent, DemoComponentProps> {
+abstract class AbstractController<I = any, C = any> {
 
     /**
-     * 创建自定义组件实例，这个方法会创建你提供的自定义组件，并将他渲染到指定的容器中
-     * 方法入参会给你传递要渲染到的目标容器和初始化的完整配置项，这是前提条件，剩下的就看你自己的实现了
+     * 组件实例引用
+     * @protected
+     */
+    protected instance: I | null = null;
+    /**
+     * 组件配置(包括组件数据)
+     * @protected
+     */
+    public config: C | null = null;
+    /**
+     * 组件所处容器的dom元素
+     * @protected
+     */
+    public container: HTMLElement | null = null;
+
+    /******************生命周期******************/
+
+    /**
+     * 创建组件并将组件挂载到指定的容器中
      * @param container 容器
-     * @param config 组件的完整初始化配置项
+     * @param config 组件配置
      */
-    async create(container: HTMLElement, config: any): Promise<this> {
-        this.config = config;
-        this.container = container;
-        //ComponentUtil.createAndRender方法是设计器提供的一个工具方法，它可以创建并渲染一个React组件，
-        //并将组件实例返回给设计器（这点尤为重要，设计器后续要操作该组件的属性都依靠这个实例）
-        //PS：如果你可以更好的实现这个过程，请联系我优化它或者提交pr，嘿嘿~~
-        this.instance = await ComponentUtil.createAndRender(container, DemoComponent, config);
-        return this;
-    }
+    public abstract create(container: HTMLElement, config: C): Promise<void>;
 
     /**
-     * 销毁方法。这个方法里面会把所有的组件变量都清空掉。让gc可以及时回收内存
-     * 调用实际你可自行决定，一般是在组件销毁前调用
+     * 更新组件配置，并触发组件重新渲染
+     * @param config 组件属性（参数）
+     * @param upOp 操作类型
      */
-    destroy(): void {
+    public abstract update(config: C, upOp?: UpdateOptions): void;
+
+    /**
+     * 销毁组件
+     */
+    public destroy(): void {
         this.instance = null;
         this.config = null;
+        this.container = null;
     }
 
+
+    /******************普通方法******************/
     /**
-     * 该方法获取当前组件的完整配置项
+     * 获取组件配置数据
      */
-    getConfig(): DemoComponentProps | null {
-        return this.config;
-    }
+    public abstract getConfig(): C | null;
 
-    /**
-     * 本方法更新组件的配置项，并判断是否需要重新渲染组件
-     * @param config 配置项片段（片段demo参考下面给出的截图）
-     * @param upOp  operateType?: 更新的数据类型，普通样式或是组件数据。具体细分取决你自己组件的要求，也可以不划分，反正参数会传递给你;
-     *              reRender: boolean;是否需要触发组件的重新渲染，这个点很关键，有些配置的更新是不需要重新渲染组件的，就可以通过这个参数控制
-     */
-    update(config: DemoComponentProps, upOp: UpdateOptions | undefined): void {
-        //ObjectUtil.merge方法是设计器提供的一个工具方法，它可以将配置片段和原有的配置项合并成一个新的完整配置项，当然这个过程你也可以自定义实现
-        this.config = ObjectUtil.merge(this.config, config);
-        upOp = upOp || {reRender: true, operateType: OperateType.OPTIONS};
-        if (upOp.reRender)
-            this.instance?.setState(this.config); //如果是class组件这里就很方便了，我们直到class组件中setState就可以触发组件的重新渲染
-    }
-
-    /**
-     * 更新组件主题，这个方法需要你自己实现，方法入参会给你传递一个系列的主题颜色，将这些颜色用于你自己的组件样式中接口，不实现就没有主题切换的效果
-     * @param newTheme
-     */
-    updateTheme(newTheme: ThemeItemType): void {
-
-    }
 }
+
+export default AbstractController;
+
 ```
 
-配置片段与旧配置的合并过程示意图：
+#### AbstractDesignerController定义
 
-![配置项合并示意图](https://picdl.sunbangyan.cn/2023/11/05/0ff2af054d52cb2e71fd18a20f793f99.png)
-
-### config.ts
-
-config.ts是自定义组件右侧配置菜单的react组件实现，他和component一样本质也是一个react组件。并且他对组件类型也是没有要求的
-
-其详细结构和说明如下：
-
-```js
-import React from 'react';
-import {ConfigType} from "../../designer/right/ConfigType";
-import {DemoComponentStyle} from "./DemoComponent";
-
+```ts
 /**
- * 自定义组件的样式配置组件，组件的props是固定的，他会传递给你一个controller。这个controller就是我们之前定义的controller的实例对象
+ * AbstractDesignerController继承自AbstractController，在泛型的定义和约束上和AbstractController完全保持一致。
+ * 此外，AbstractDesignerController扩展了一些自定义组件所需的特有方法，如：修改组件数据、注册蓝图事件等
  */
-export const DemoStyleConfig: React.FC<ConfigType> = ({controller}) => {
+abstract class AbstractDesignerController<I = any, C = any> extends AbstractController<I, C> {
+    //轮询请求定时器
+    protected interval: NodeJS.Timeout | null = null;
+    //上一次数据连接状态 true：成功 false：失败
+    protected lastReqState: boolean = true;
+    //断线重连标识
+    protected reConnect: boolean = false;
+    //异常提示信息dom元素
+    private errMsgDom: HTMLElement | null = null;
 
-    const updateStyle = (config: DemoComponentStyle) => {
-        //controller是之前定义的controller.ts这个类的实例对象，
-        //你可以调用他的update方法直接更新对应组件的样式并重新渲染它
-        controller.update({style: config});
+    /**
+     * 更新组件数据,且必须触发组件的重新渲染
+     * @param data
+     */
+    public changeData(data: any): void {
     }
 
-    return (
-        <div>这是组件的配置项</div>
-    )
+    /**
+     * 用于注册组件事件，在组件接入蓝图事件系统时使用
+     */
+    public registerEvent(): void {
+    }
+
+    /**
+     * 加载组件数据，用于在预览（展示）模式下渲染完组件后根据当前组件的数据配置自动加载并更新组件数组。
+     * 注：若自定义组件有自己的数据加载方式，则需要覆写此方法
+     */
+    public loadComponentData(): void {
+        //预览模式
+        const {data} = this.config! as ComponentBaseProps;
+        if (!data) return;
+        const {dataSource} = data!;
+        switch (dataSource) {
+            case "static":
+                //静态数据不做处理，组件首次渲染时默认读取静态数据
+                break;
+            case "api":
+                const {url, method, params, header, flashFrequency = 5} = data?.apiData!;
+                this.interval = setInterval(() => {
+                    HttpUtil.sendHttpRequest(url!, method!, header!, params!).then((data: any) => {
+                        if (data) {
+                            if (!this.lastReqState) {
+                                this.lastReqState = true;
+                                this.errMsgDom?.remove();
+                                this.errMsgDom = null;
+                                this.changeData(data);
+                            }
+                            this.changeData(data);
+                        }
+                    }).catch(() => {
+                        this.lastReqState = false;
+                        //请求失败，在原有容器的基础上添加异常提示信息的dom元素（此处直接操作dom元素，不适用react的api进行组件的反复挂载和卸载）
+                        if (!this.errMsgDom) {
+                            this.errMsgDom = document.createElement("div");
+                            this.errMsgDom.classList.add("view-error-message");
+                            this.errMsgDom.innerText = "数据加载失败...";
+                            this.container!.appendChild(this.errMsgDom);
+                        }
+                    });
+                }, flashFrequency * 1000);
+                break;
+        }
+    }
+
+    /**
+     * 更新本组件的主题样式方法，用于在全局切换主题时使用
+     * @param newTheme 新主题
+     */
+    public updateTheme(newTheme: ThemeItemType): void {
+    }
+
 }
 
+export default AbstractDesignerController;
 
 ```
 
-### definition.ts
+### definition定义说明
 
-definition.ts是用于定义自定义组件的进本信息、舒适化数据和缩略图等数据
+definition.ts 是定义组件所有基础信息和初始化数据的文件，其完整结构如下：
 
-其详细结构和说明如下：
-
-```js
-import {BaseInfoType} from "../../designer/DesignerType";
-import {getDefaultMenuList} from "../../designer/right/util";
-import {AbstractComponentDefinition, MenuToConfigMappingType} from "../../framework/core/AbstractComponentDefinition";
-import {ClazzTemplate} from "../common-component/common-types";
-import {MenuInfo} from "../../designer/right/MenuType";
-import BaseInfo from "../common-component/base-info/BaseInfo";
-import {DemoComponentProps, DemoController} from "./DemoController";
-import demoImg from './demo-comp.png';
-import {DemoStyleConfig} from "./DemoConfig";
-import {ClassifyEnum} from "../../designer/left/classify-list/ClassifyType";
-import {DatabaseFilled, HighlightFilled, InteractionFilled, MediumCircleFilled, SkinFilled} from "@ant-design/icons";
-
+```ts
 /**
- *  组件的信息定义类，在这个类中，继承AbstractComponentDefinition并实现好所有方法即可。
- *  在这些方法中你需要提供
- *  1. 组件基本信息（包括组件名称、类型、描述等）
- *  2. 组件缩略图引用。
- *  3. 组件的controller类引用
- *  4. 组件的初始化配置
- *  5. 组件的配置菜单列表
- *  6. 组件的配置菜单与配置内容的映射关系
+ * 自动扫描抽象组件定义核心类。
+ * 对于所有继承并实现了该抽象类的子类，都会被自动扫描到并注册到设计器中。
+ * 因此，所有要接入设计器的react组件都应该按照该类的约定实现其所有的方法。
  *
- *  PS: 这个类是设计器扫描的核心类，必须完整实现AbstractComponentDefinition，否则设计器将无法扫描到你的自定义组件
+ * 泛型说明：
+ * C: 组件控制器类，用于指定当前组件定义对应的控制器类
+ * P: 组件配置类型，用于指定当前组件的配置数据(config属性的类型)
  */
-export default class BaseTextDefinition extends AbstractComponentDefinition<DemoController, DemoComponentProps> {
+export abstract class AbstractDefinition<C extends AbstractController = AbstractController, P = any> {
 
     /**
-     * 返回自定义组件的基础信息
+     * 返回组件基础信息，用于在组件列表中展示
      */
-    getBaseInfo(): BaseInfoType {
-        return {
-            compName: "测试组件", //中文名称
-            compKey: "testComponent", //组件标识，设计器内不允许重复，否则会出现识别误差
-            type: "基础",
-            typeKey: ClassifyEnum.BASE, //分类标识，参考: ClassifyEnum
-            desc: "测试组件描述",
-        };
-    }
+    abstract getBaseInfo(): BaseInfoType ;
 
     /**
-     * 返回组件的预览图，将文件夹中的图片引入并返回即可
+     * 返回组件的初始配置，用于在画布渲染组件时的初始化组件数据
      */
-    getChartImg(): string | null {
-        return demoImg;
-    }
+    abstract getInitConfig(): P;
 
     /**
-     * 返回组件的controller类引用，引入我们定义的controller然后返回即可
+     * 返回React组件Controller控制器的类模板，在画布中创建组件实例时会根据该方法的返回值实例化组件控制器并保存。
+     * 后续将通过该控制器的实例对象来控制组件的生命周期
      */
-    getComponent(): ClazzTemplate<DemoController> | null {
-        return DemoController;
-    }
+    abstract getController(): ClazzTemplate<C> | null;
 
     /**
-     * 返回组件的初始化配置，这个配置将会在组件第一次被拖拽到设计器中时使用，其中的类型约束来自于我们在controller中定义的DemoComponentProps
+     * 返回组件图片缩略图，在组件列表中展示时使用。图片尺寸越小越好
      */
-    getInitConfig(): DemoComponentProps {
-        return {
-            info: {
-                id: "",
-                name: '测试组件',
-                type: 'demoComponent', //与getBaseInfo中的compKey保持一致
-                desc: '测试组件描述',
-            },
-            style: {
-                color: '#a7a7a7',
-            },
-            data: {
-                dataSource: 'static',
-                staticData: {
-                    data: "测试组件的静态数据，组件的数据结构需要你自己定义好，这里的data是any类型，可以接收任何类型的数据"
-                },
-            },
-        };
-    }
+    abstract getChartImg(): string | null;
 
     /**
-     * 返回自定义组件在设计器右侧的操作菜单列表，这个看你自己规划的组件设置项有多少，如何分类。根据你自己的想法来就行
+     * 返回右侧配置菜单列表，双击组件时需要展示该菜单列表
      */
-    getMenuList(): Array<MenuInfo> | null {
+    abstract getMenuList(): Array<MenuInfo> | null;
+
+    /**
+     * 返回右侧菜单与对应配置内容组件的映射关系
+     */
+    abstract getMenuToConfigContentMap(): MenuToConfigMappingType | null;
+
+    /**
+     * 返回当前组件能触发的事件列表, 在蓝图图层节点中使用
+     */
+    getEventList(): EventInfo[] {
         return [
             {
-                icon: MediumCircleFilled,
-                name: '信息',
-                key: 'info',
-            },
-            {
-                icon: HighlightFilled,
-                name: '样式',
-                key: 'style',
+                id: "loaded",
+                name: "组件加载完成时",
             }
         ];
     }
 
     /**
-     * 返回操作菜单列表key与对应配置组件的映射关系。这个方法的返回值是一个对象，对象的key是菜单列表的key，value是配置组件的引用
-     * 例如style对应的配置组件就是我们之前定义的DemoConfig这个文件中的DemoStyleConfig组件。其余的你可以自行扩展。
-     *
-     * 注：一般getMenuList和getMenuToConfigContentMap这两个方法是成对出现的，有多少个菜单项就有对应的配置组件，key要对应上
+     * 返回当前组件能接受的动作列表，在蓝图图层节点中使用。可据此实现对组件的操作
      */
-    getMenuToConfigContentMap(): MenuToConfigMappingType | null {
-        return {
-            info: BaseInfo,
-            style: DemoStyleConfig,
-        };
+    getActionList(): ActionInfo[] {
+        return [
+            {
+                name: "显示",
+                id: "show",
+                handler: (controller: AbstractController) => {
+                    controller.container!.style.display = "block";
+                }
+            },
+            {
+                name: "隐藏",
+                id: "hide",
+                handler: (controller: AbstractController) => {
+                    controller.container!.style.display = "none";
+                }
+            },
+            {
+                name: "更新组件配置",
+                id: "updateConfig",
+                handler: (controller: AbstractController, params?: object) => {
+                    controller.update(params);
+                }
+            }
+        ];
+    }
+
+    /**
+     * 自定义组件主分类，如需要创建一个设计器没有提供的主分类，则实现该方法
+     */
+    getCategorize(): ICategorize | null {
+        return null;
+    }
+
+    /**
+     * 自定义组件子分类,如需要创建一个设计器没有提供的子分类，则实现该方法
+     */
+    getSubCategorize(): ICategorize | null {
+        return null;
     }
 }
 ```
 
-#### 效果展示
+**如上，我们介绍了接入自定义组件过程中最重要的两个核心文件controller.ts和definition.ts，请务必重点理解这两个文件的作用和使用方法。**
 
-![最终效果展示](https://picdl.sunbangyan.cn/2023/11/05/3a2468da5546949fcdb0abb0d80c497d.png)
+## 接入自定义组件
+
+以接入一个自定义的颜色块组件为例，我们将在本节中展示接入自定义组件的步骤的完整示例代码。
+
+### 准备工作
+
+1. 请按照 [快速开始](/start.md) 章节步骤，将项目克隆到本地运行起来。
+2. 在src/comps目录下任意位置新建一个文件夹，例如：src/lc/base-color-block（这个文件夹将用于存放所有与你组件相关的信息）
+3. 准备好组件缩略图放在src/lc/base-color-block目录下，例如：src/lc/base-color-block/base-color-block.png
+
+### 第一步：实现普通的React组件
+
+此处以React函数式组件为例
+
+```tsx
+import React, {ForwardedRef, useImperativeHandle, useRef, useState} from 'react';
+import {ComponentInfoType} from "../../common-component/common-types";
+
+/**
+ * 颜色块组件的样式数据类型
+ */
+export interface BaseColorBlockComponentStyle {
+    borderRadius?: number;
+    borderWidth?: number;
+    borderColor?: string;
+    borderStyle?: string;
+    background?: string;
+}
+
+/**
+ * 颜色块组件的完整配置项类型
+ */
+export interface BaseColorBlockComponentProps {
+    base?: ComponentInfoType;
+    style?: BaseColorBlockComponentStyle; //取自上面的BaseColorBlockComponentStyle
+}
+
+/**
+ * 颜色块组件的ref类型，用于暴露给设计器controller使用，与class组件的实例化对象同理
+ */
+export interface BaseColorBlockComponentRef {
+    updateConfig: (newConfig: BaseColorBlockComponentProps) => void;
+    setEventHandler: (eventMap: Record<string, Function>) => void;
+}
+
+const BaseColorBlockComponent = React.forwardRef((props: BaseColorBlockComponentProps,
+                                                  ref: ForwardedRef<BaseColorBlockComponentRef>) => {
+    const [config, setConfig] = useState<BaseColorBlockComponentProps>({...props});
+
+    const eventHandlerMap = useRef<Record<string, Function>>({});
+
+    /**
+     * 将函数式组件内部的方法与ref绑定，暴露给controller使用
+     */
+    useImperativeHandle(ref, () => ({
+        updateConfig: (newConfig) => setConfig({...newConfig}),
+        setEventHandler: (eventMap) => eventHandlerMap.current = eventMap,
+    }));
+
+    /**
+     * 点击事件处理，若需要接入蓝图，则需要配合controller和definition中蓝图相关的的方法配合使用
+     */
+    const onClick = () => {
+        if ('click' in eventHandlerMap.current) {
+            eventHandlerMap.current['click']();
+        }
+    }
+
+    const {style} = config;
+    return (
+        <div style={{...{height: '100%', display: 'flex'}, ...style}} onClick={onClick}/>
+    );
+});
+
+export default BaseColorBlockComponent;
+```
+
+### 第二步：实现配置组件
+
+> 说明：配置组件使用了json schema的解析组件。该组件的使用下一节会有详细介绍。若不喜欢这种形式，也可以使用普通React组件的方式处理配置项。
+
+```tsx
+import React from 'react';
+import {FieldChangeData, LCGUI} from "../../../json-schema/LCGUI";
+import {Control} from "../../../json-schema/SchemaTypes";
+import {BaseColorBlockController} from "./BaseColorBlockController";
+import {ConfigType} from "../../../designer/right/ConfigContent";
+
+/**
+ * 颜色块组件的配置项组件，本质上就是一个React组件。该组件的props中设计器会统一传入一个controller对象，可使用该对象完成对组件配置的更新
+ */
+export const BaseColorBlockConfig: React.FC<ConfigType<BaseColorBlockController>> = ({controller}) => {
+
+    const {background, borderWidth, borderColor, borderStyle, borderRadius} = controller.getConfig()?.style!;
+
+    const onFieldChange = (fieldChangeData: FieldChangeData) => {
+        const {dataFragment} = fieldChangeData;
+        controller.update(dataFragment);
+    }
+
+    const schema: Control = {
+        key: 'style',
+        type: 'grid',
+        config: {columns: 2},
+        children: [
+            {
+                key: 'background',
+                type: 'color-picker',
+                label: '背景色',
+                value: background,
+                config: {
+                    width: '100%',
+                    radius: 3,
+                    showBorder: true,
+                    showText: true,
+                    height: 16,
+                    hideControls: true
+                }
+            },
+            {
+                key: 'borderWidth',
+                type: 'input',
+                label: '边框宽',
+                value: borderWidth,
+                config: {
+                    width: '100%',
+                    type: 'number',
+                    min: 0,
+                    max: 10,
+                    step: 1
+                }
+            },
+            {
+                key: 'borderColor',
+                type: 'color-picker',
+                label: '边框色',
+                value: borderColor,
+                config: {
+                    width: '100%',
+                    radius: 3,
+                    showBorder: true,
+                    showText: true,
+                    height: 16,
+                    hideControls: true
+                }
+            },
+            {
+                key: 'borderStyle',
+                type: 'select',
+                label: '样式',
+                value: borderStyle,
+                config: {
+                    options: [
+                        {label: '实线', value: 'solid'},
+                        {label: '虚线', value: 'dashed'},
+                        {label: '点线', value: 'dotted'},
+                        {label: '双线', value: 'double'},
+                        {label: '3D凹槽', value: 'groove'},
+                        {label: '3D垄状', value: 'ridge'},
+                        {label: '3D内嵌', value: 'inset'},
+                        {label: '3D外嵌', value: 'outset'},
+                        {label: '无边框', value: 'none'},
+                    ]
+                }
+            },
+            {
+                key: 'borderRadius',
+                type: 'input',
+                label: '圆角',
+                value: borderRadius,
+                config: {
+                    width: '100%',
+                    type: 'number',
+                    min: 0,
+                }
+            },
+        ]
+    }
+
+    /**
+     * LCGUI组件是一个json schema的解析组件，用于将json schema解析成对应的配置项组件
+     * 该解析组件由设计器提供，使用者无需关心。仅需按照其约定的方式使用即可。下一节会详细介绍该组件的使用
+     *
+     * 或者你也可以完全按照普通react组件的方式来实现配置项组件
+     */
+    return (
+        <LCGUI schema={schema} onFieldChange={onFieldChange}/>
+    )
+}
+```
+
+### 第三步：实现控制器
+
+```tsx
+import {ThemeItemType} from "../../../designer/DesignerType";
+import {UpdateOptions} from "../../../framework/core/AbstractController";
+import AbstractDesignerController from "../../../framework/core/AbstractDesignerController";
+import ComponentUtil from "../../../utils/ComponentUtil";
+import BaseColorBlockComponent, {
+    BaseColorBlockComponentProps,
+    BaseColorBlockComponentRef
+} from "./BaseColorBlockComponent";
+import ObjectUtil from "../../../utils/ObjectUtil";
+import BPExecutor from "../../../blueprint/core/BPExecutor";
+
+export class BaseColorBlockController extends AbstractDesignerController<BaseColorBlockComponentRef, BaseColorBlockComponentProps> {
+
+    async create(container: HTMLElement, config: BaseColorBlockComponentProps): Promise<void> {
+        this.config = config;
+        this.container = container;
+        // 创建组件实例，ComponentUtil是一个组件工具类，有设计器提供。也可以自己实现
+        this.instance = await ComponentUtil.createAndRender<BaseColorBlockComponentRef>(container, BaseColorBlockComponent, config);
+    }
+
+    destroy(): void {
+        this.instance = null;
+        this.config = null;
+    }
+
+    getConfig(): BaseColorBlockComponentProps | null {
+        return this.config;
+    }
+
+    /**
+     * 更新组件配置，你可以在此处完成对组件配置的更新并触发组件的重新渲染
+     */
+    update(config: BaseColorBlockComponentProps, upOp?: UpdateOptions | undefined): void {
+        this.config = ObjectUtil.merge(this.config, config);
+        upOp = upOp || {reRender: true};
+        if (upOp.reRender)
+            this.instance?.updateConfig(this.config!);
+    }
+
+    /**
+     * 更新组件主题，你可以在此处完成对组件主题的更新并触发组件的重新渲染
+     * 没有接入主题要求的组件可以不实现该方法
+     */
+    updateTheme(newTheme: ThemeItemType): void {
+
+    }
+
+    /**
+     * 蓝图事件注册，你可以在此处完成对组件蓝图事件的注册
+     * 该方法的实现需要在React组件文件中做一些额外的工作，即需要在组件事件触发后，通过唯一key匹配到该方法返回的事件处理函数上
+     *
+     * 蓝图会根据该机制触发组件事件并不断流转到下一个节点，直到事件链路处理完毕
+     */
+    registerEvent() {
+        const nodeId = this.config?.base?.id!;
+        this.instance?.setEventHandler({
+            click: () => BPExecutor.triggerComponentEvent(nodeId!, "click", this.config),
+        })
+    }
+}
+```
+
+### 第四步：实现Definition
+
+```tsx
+import {
+    AbstractDefinition, BaseInfoType, EventInfo,
+    MenuToConfigMappingType
+} from "../../../framework/core/AbstractDefinition";
+import {ClazzTemplate} from "../../common-component/common-types";
+import {MenuInfo} from "../../../designer/right/MenuType";
+import baseColorBlockImg from './base-color-block.png';
+import {getDefaultMenuList} from "../../../designer/right/util";
+import {BaseColorBlockController} from "./BaseColorBlockController";
+import {BaseColorBlockComponentProps} from "./BaseColorBlockComponent";
+import BaseInfo from "../../common-component/base-info/BaseInfo";
+import AnimationConfig from "../../common-component/animation-config/AnimationConfig";
+import ThemeConfig from "../../common-component/theme-config/ThemeConfig";
+import {BaseColorBlockConfig} from "./BaseColorBlockConfig";
+
+export default class BaseColorBlockDefinition extends AbstractDefinition<BaseColorBlockController, BaseColorBlockComponentProps> {
+    getBaseInfo(): BaseInfoType {
+        return {
+            compName: "基础色块",
+            compKey: "BaseColorBlock",
+            categorize: "ornament",
+        };
+    }
+
+    getChartImg(): string | null {
+        return baseColorBlockImg;
+    }
+
+    getController(): ClazzTemplate<BaseColorBlockController> | null {
+        return BaseColorBlockController;
+    }
+
+    getInitConfig(): BaseColorBlockComponentProps {
+        return {
+            base: {
+                id: "",
+                name: '基础色块',
+                type: 'BaseColorBlock',
+            },
+            style: {
+                background: '#009DFF33',
+                borderRadius: 0,
+                borderWidth: 0,
+                borderColor: '#74747400',
+                borderStyle: 'none',
+            },
+        };
+    }
+
+    getMenuList(): Array<MenuInfo> | null {
+        return getDefaultMenuList().filter((item: MenuInfo) => (item.key !== 'theme' && item.key !== 'data' && item.key !== 'mapping'));
+    }
+
+    getMenuToConfigContentMap(): MenuToConfigMappingType | null {
+        return {
+            base: BaseInfo,
+            style: BaseColorBlockConfig,
+            animation: AnimationConfig,
+            theme: ThemeConfig
+        };
+    }
+
+    getEventList(): EventInfo[] {
+        const events = super.getEventList();
+        return events.concat([
+            {
+                id: "click",
+                name: "点击时",
+            }
+        ]);
+    }
+}
+```
+
+### 第五步：完成接入
+
+经过上面的所有步骤后，你的文件夹下应该有如下文件：
+
+![](/images/接入组件文件结构.png)
+
+检查无误后启动你的开发环境，剩下的交给设计器，他会扫描并加载你的组件到设计器中。打开浏览器访问地址，你应该可以看到你的组件已经接入到设计器中了。
+
+![](/images/接入完成预览图.png)
