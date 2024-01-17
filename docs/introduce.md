@@ -1,15 +1,11 @@
 # LIGHT CHASER (追光)
 
-> 专注于数据可视化的开源工具
-
-<br/>
+**专注于数据可视化的开源工具**
 
 # 概述
 
-light chaser 是一款开源免费的数据可视化设计工具，基于 React 技术栈实现。 通过它，你可以简单快速地制作数据可视化相关内容。它可用于大屏幕数据 可视化展示、数据报告、数据分析等场景。
-你可以在[github](https://github.com/xiaopujun/light-chaser)上了解它的最新动态：
-
-<br/>
+light chaser 是一款开源免费的数据可视化设计工具，基于 React18、Vite5、TypeScript5等技术栈实现。 通过它你可以简单快速地制作数据可视化相关内容。它可用于大屏幕数据可视化展示、数据报告、数据分析等场景。
+你可以在 [Github](https://github.com/xiaopujun/light-chaser) 或 [Gitee](https://gitee.com/xiaopujun/light-chaser) 上了解它的最新动态：
 
 # 特性
 
@@ -20,15 +16,11 @@ light chaser 是一款开源免费的数据可视化设计工具，基于 React 
 - 内置蓝图编辑器
 - 自定义主题
 
-<br/>
-
 # 示例
 
 > 示例托管在github pages上，畅通访问可能需要科学上网
 
-你可以访问[LIGHT CHASER](https://xiaopujun.github.io/light-chaser/)在线体验它的所有功能。
-
-<br/>
+你可以访问 [LIGHT CHASER](https://xiaopujun.github.io/light-chaser/) 在线体验它的所有功能。
 
 # 社区
 

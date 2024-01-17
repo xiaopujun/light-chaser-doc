@@ -1,16 +1,19 @@
-我提供了[在线访问](https://xiaopujun.github.io/light-chaser-app/#)的方式。不过它托管在github Pages上，访问速度可能比较慢。
-因此你可以选择本地部署，这样访问速度会快很多。当然你也可以将他用于你的产品中。
+[LIGHT CHASER](https://github.com/xiaopujun/light-chaser) 提供了 [在线访问](https://xiaopujun.github.io/light-chaser-app/#)
+的方式。不过它托管在github Pages上，访问速度可能比较慢。 因此你可以选择本地部署，这样访问速度会快很多。当然你也可以将他用于你的生产环境中。
+
+> 视频教程：
+> [Windows部署教程](https://www.bilibili.com/video/BV1ku411c7Q2/?share_source=copy_web&vd_source=ece0559aa5b8c4f5c0d7307cb2b06aac) 
+> [Linux部署教程](https://www.bilibili.com/video/BV1kc41117be/?spm_id_from=333.999.0.0&vd_source=74d6c039036796c340cd3b7850ec7244)
 
 ## 准备
 
-在部署前你需要准备好以下环境：
+部署前你需要准备好以下环境：
 
 - 一个静态服务器（如[nginx](https://github.com/xiaopujun/light-chaser/releases)）
-- light chaser [编译后的源码包](https://github.com/xiaopujun/light-chaser/releases)
+- LIGHT CHASER [编译后的源码包](https://github.com/xiaopujun/light-chaser/releases)
 
-> 本文使用nginx进行部署，静态服务没有固定的限制，你可以使用任何你喜欢的静态服务器。
-
-> 如果你要绑定域名，请提前申请好域名，并将域名解析到你的服务器上。相关内容可自行搜索教程
+> 1. 本文使用nginx进行部署，静态服务没有固定的限制，你可以使用任何你喜欢的静态服务器。
+> 2. 如果你要绑定域名，请提前申请好域名，并将域名解析到你的服务器上。相关内容可自行搜索教程
 
 将下载好的nginx和源码包放在同一目录下（可选，方便管理）。如下图，app是源码包中解压后的文件
 
@@ -84,3 +87,5 @@ http {
 ## 启动nginx
 
 启动nginx，如果没有报错，就说明启动成功了。此时你可以在浏览器中输入你的域名，就可以访问了。
+
+> linux下的部署方式大同小异，不再赘述。

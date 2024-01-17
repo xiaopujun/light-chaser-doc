@@ -7,6 +7,5 @@
 [GitHub](https://github.com/xiaopujun/light-chaser)
 [开始](/introduce)
 
-![](https://picss.sunbangyan.cn/2023/11/05/0f9a8afd3390487e091ce569dd3d6e90.jpg)
 
 
