@@ -8,5 +8,5 @@
 - 扫描下方二维码联系我或进群寻找解决方案（优先建议通过issue反馈，帮助我更好的建立LIGHT CHASER的问题社区）
 
 <div style="display: flex">
-    <div style="padding: 20px"><img alt="group" src="https://picss.sunbangyan.cn/2024/01/16/b887fc34d0321d9eea5fc5991a1b9e95.jpeg"></div>
+    <div style="padding: 20px"><img alt="group" src="https://picst.sunbangyan.cn/2024/01/22/18937723b9b283c36f505b21d3dab8de.jpeg"></div>
 </div>
