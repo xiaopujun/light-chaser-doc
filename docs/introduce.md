@@ -27,5 +27,5 @@ light chaser 是一款开源免费的数据可视化设计工具，基于 React1
 你可以通过扫描以下微信二维码联系到我或者直接扫描下方的微信群二维码加入到我们的交流群中。
 
 <div style="display: flex">
-    <div  style="padding: 20px"><img alt="group" src="https://i.072333.xyz/file/45feaa94f4dfb023a1d97.jpg"></div>
+    <div  style="padding: 20px"><img alt="group" src="https://i.072333.xyz/file/4947e62cf6592c0634ab9.jpg"></div>
 </div>
