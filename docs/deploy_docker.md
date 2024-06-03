@@ -3,15 +3,15 @@
 
 > 注：使用docker部署前请确保已经安装docker服务，并熟练使用docker命令
 
-# 部署LIGHT CHASER后端服务
+## 部署LIGHT CHASER后端服务
 
-## 1. 拉取镜像
+### 1. 拉取镜像
 
 ```shell
 docker pull puyinzhen/light-chaser-server:1.0.0
 ```
 
-## 2. 运行容器
+### 2. 运行容器
 
 ```shell
 #创建docker网桥，链接docker容器网络和宿主机网络
@@ -31,7 +31,7 @@ docker run -v 替换为宿主机配置文件目录:/config -v 替换为宿主机
 
 4. --name light-chaser-server01 ：此命令参数用于指定容器的名称，可以自行调整，不写默认为随机生成的名称。
 
-## 3. 应用的配置文件
+### 3. 应用的配置文件
 
 你需要在上面提到的配置文件目录下创建application.yml文件，这样你就可以完全自定义你自己的MySQL数据库服务了。配置文件内容如下：
 
@@ -77,15 +77,15 @@ light-chaser:
 
 到此，你已经成功部署了LIGHT CHASER的后端服务
 
-# 部署LIGHT CHASER前端服务
+## 部署LIGHT CHASER前端服务
 
-## 1. 拉取镜像
+### 1. 拉取镜像
 
 ```shell
 docker pull puyinzhen/light-chaser:v1.2.0
 ```
 
-## 2. 运行容器
+### 2. 运行容器
 
 ```shell
 docker run -v 宿主机nginx配置文件位置:/etc/nginx/conf.d/default.conf:ro -p 80:80 --name light-chaser01 puyinzhen/light-chaser:v1.2.0
