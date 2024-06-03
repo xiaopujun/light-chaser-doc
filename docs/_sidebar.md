@@ -4,5 +4,6 @@
 * [组件开发](/develop)
 * [ui组件库](/ui)
 * [部署](/deploy)
+* [部署(Docker)](/deploy_docker)
 * [问题反馈](/question)
 * [更新日志](/log)
