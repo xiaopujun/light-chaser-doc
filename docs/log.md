@@ -1,3 +1,20 @@
+## [v1.3.0](https://github.com/xiaopujun/light-chaser/releases/tag/1.3.0)
+
+#### Features.
+
+1. 支持FLV、HLS协议视频流组件
+2. 支持数据源sql转义后传输，避免私有化部署防火墙拦截
+3. 支持图层操作按住shift进行范围选择
+
+#### Bug Fixes:
+
+1. 修复已知功能bug
+
+#### Enhancement:
+
+1. 优化代码结构
+2. 优化页面加载速度
+
 ## [v1.2.0](https://github.com/xiaopujun/light-chaser/releases/tag/v1.2.0)
 
 #### Features.
