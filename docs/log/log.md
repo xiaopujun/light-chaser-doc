@@ -1,23 +1,27 @@
-## [v1.3.0](https://github.com/xiaopujun/light-chaser/releases/tag/1.3.0)
+## 1.3.0
 
-#### Features.
+[查看详情](https://github.com/xiaopujun/light-chaser/releases/tag/1.3.0)
+
+**Features.**
 
 1. 支持FLV、HLS协议视频流组件
 2. 支持数据源sql转义后传输，避免私有化部署防火墙拦截
 3. 支持图层操作按住shift进行范围选择
 
-#### Bug Fixes:
+**Bug Fixes:**
 
 1. 修复已知功能bug
 
-#### Enhancement:
+**Enhancement:**
 
 1. 优化代码结构
 2. 优化页面加载速度
 
-## [v1.2.0](https://github.com/xiaopujun/light-chaser/releases/tag/v1.2.0)
+## 1.2.0
 
-#### Features.
+[查看详情](https://github.com/xiaopujun/light-chaser/releases/tag/v1.2.0)
+
+**Features**
 
 1. 文本组件细化文本详细配置，支持字间距、行间距、描边、对齐设置。数字翻牌器支持对齐设置。
 2. 支持自定义高德地图组件（需自行申请高德地图key）
@@ -29,11 +33,11 @@
 8. 新增组件滤镜功能
 9. 新增项目重命名功能
 
-#### Bug Fixes:
+**Bug Fixes**
 
 1. 修复分组后删除分组元素导致整个分组均被删除的bug
 
-#### Enhancement:
+**Enhancement**
 
 1. 优化首页、图标显示效果
 2. 移除冗余依赖项
@@ -42,9 +46,11 @@
 5. 优化图层隐藏与重新显示效果
 6. 优化首页展示效果及首页加载速度
 
-## [v1.1.0](https://github.com/xiaopujun/light-chaser/releases/tag/v1.1.0)
+## 1.1.0
 
-#### Features.
+[查看详情](https://github.com/xiaopujun/light-chaser/releases/tag/v1.1.0)
+
+**Features**
 
 1. 新增词云图、玉珏图、轮播图、文字弹幕组件
 2. scheam新增范围选择组件
@@ -56,7 +62,7 @@
 8. 主设计器底部新增事件开关（可在编辑模式下决定是否开启组件自带事件效果）、吸附开关（可用于拖拽组件时是否产生布局吸附效果）
 9. 添加屏幕适配选项，增加撑满全屏、撑满宽度、撑满高度选项。可满足更多使用场景
 
-#### Bug Fixes:
+**Bug Fixes**
 
 1. 修复自定义画布尺寸失效问题
 2. 修复蓝图bug
@@ -67,7 +73,7 @@
 7. 修复蓝图画布移动过程中产生的白边问题
 8. 修复复制组件后撤销、重做元素样式丢失问题
 
-#### Enhancement:
+**Enhancement**
 
 1. 优化首页样式效果
 2. 优化antd图表样式设置
@@ -77,9 +83,11 @@
 6. 优化代码编辑器显示效果
 7. 优化api、数据库数据刷新，提供自动刷新选项
 
-## [v1.0.0](https://github.com/xiaopujun/light-chaser/releases/tag/v1.0.0)
+## 1.0.0
 
-#### Features:
+[查看详情](https://github.com/xiaopujun/light-chaser/releases/tag/v1.0.0)
+
+**Features**
 
 1. 支持在分组场景下，按住shift键选中/激活分组内子组件
 2. 支持按住ctrl键实现组件尺寸的等比缩放
@@ -94,11 +102,11 @@
 11. 图层数据结构调整为双向链表（破坏性改动，不兼容旧版本）
 12. 适配mac快捷键
 
-#### Bug Fixes：
+**Bug Fixes**
 
 1. 修复部分蓝图设计器bug
 
-#### Enhancement：
+**Enhancement**
 
 1. 优化设计器数据结构
 2. 优化json schema解析性能
@@ -107,9 +115,11 @@
 5. 优化资源列表标题显示效果
 6. 优化右键菜单列表显示效果
 
-## [v0.0.10](https://github.com/xiaopujun/light-chaser/releases/tag/v0.0.10)
+## 0.0.10
 
-#### Features:
+[查看详情](https://github.com/xiaopujun/light-chaser/releases/tag/v0.0.10)
+
+**Features**
 
 1. 新增大屏预览尺寸自适应
 2. 新增组件资源池，图片资源功能，实现图片资源的本地存储与服务器存储
@@ -117,11 +127,11 @@
 4. 新增图片资源池缓存，封面图片缓存，优化设计器性能
 5. 新增项目快照功能，支持项目封面、快照的生成，导出
 
-#### Bug Fixes：
+**Bug Fixes**
 
 1. 修复由React17升级到18后新的并发特性导致的代码执行顺序发生变化，进而导致拖拽组件、缩放组件的undo、redo操作失效的bug
 
-#### Enhancement：
+**Enhancement**
 
 1. 设计器UI优化调整
 2. antd4升级antd5
@@ -132,23 +142,25 @@
 7. 优化蓝图设计器拖拽添加过程的事件触发与销毁过程，减少多余事件的触发
 8. 细化自定义组件蓝图接入流程
 
-## [v0.0.9](https://github.com/xiaopujun/light-chaser/releases/tag/v0.0.9)
+## 0.0.9
+
+[查看详情](https://github.com/xiaopujun/light-chaser/releases/tag/v0.0.9)
 
 发布时间：2023-12-17
 
-#### Features:
+**Features**
 
 1. 新增配置项模板控件
 2. 新增基础表格组件
 
-#### Bug Fixes：
+**Bug Fixes**
 
 1. 修复多层级图层复制后图层出现混乱的bug
 2. 修复删除元素后undo、redo操作不连续的bug
 3. 修复加载设计器数据后默认主题丢失的bug
 4. 修复双击添加组件失效的bug
 
-#### Enhancement：
+**Enhancement**
 
 1. vite4升级到vite5
 2. React17升级到React18
@@ -157,53 +169,61 @@
 5. 优化预览模式下组件数据加载时机
 6. 优化预览模式下组件数据加载异常时，异常提示信息的渲染
 
-## [v0.0.8](https://github.com/xiaopujun/light-chaser/releases/tag/v0.0.8)
+## 0.0.8
+
+[查看详情](https://github.com/xiaopujun/light-chaser/releases/tag/v0.0.8)
 
 发布时间：2023-11-24
 
-#### Features
+**Features**
 
 - 新增分组图层设置面板
 - 新增图层列表支持右键菜单
 
-#### Enhancement
+**Enhancement**
 
 - 优化蓝图性能,
 - 优化图层列表操作体验
 - 优化画布组件拖拽体验，支持shift固定方向拖拽
 - 优化代码结构与命名 （broken change）
 
-#### Bug Fixes
+**Bug Fixes**
 
 - 修复撤销与重做相关bug
 - 修复快捷键相关bug
 - 修复蓝图线条、节点相关bug
 - 警告：v0.0.8版本不与之前版本兼容
 
-## [v0.0.7](https://github.com/xiaopujun/light-chaser/releases/tag/v0.0.7)
+## 0.0.7
+
+[查看详情](https://github.com/xiaopujun/light-chaser/releases/tag/v0.0.7)
 
 发布时间：2023-11-19
 
-#### Features
+**Features**
 
 - 新增图层分组功能
 - 支持拖拽方式添加组件到画布
 - 支持monaco编辑器在内网使用
 
-## [v0.0.6](https://github.com/xiaopujun/light-chaser/releases/tag/v0.0.6)
+## 0.0.6
+
+[查看详情](https://github.com/xiaopujun/light-chaser/releases/tag/v0.0.6)
 
 发布时间：2023-11-7
 
-#### Features
+**Features**
 
 - 新增蓝图编辑器
 - 新增JSON Schema UI解析器
 
-#### Bug Fixes
+**Bug Fixes**
 
 - 修复标尺刻度在画布反复缩放后出现误差的bug
 
-## [v0.0.5](https://github.com/xiaopujun/light-chaser/releases/tag/v0.0.5)
+## 0.0.5
+
+[查看详情](https://github.com/xiaopujun/light-chaser/releases/tag/v0.0.5)
 
 发布时间：2023-9-12
 
