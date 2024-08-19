@@ -1,4 +1,3 @@
-* [首页](home/home.md)
 * [产品介绍](/introduce)
 * [快速开始](quick_start/quick_start.md)
 * [功能介绍](functions/functions.md)

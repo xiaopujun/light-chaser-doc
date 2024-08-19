@@ -4,7 +4,7 @@
 
 感谢关注和使用 LIGHT CHASER 产品。
 
-使用LIGHT CHASER的过程中，如遇见任何问题，请联系我。对提出真实有效反馈的用户将会获得LIGHT CHASER Pro的1个月免费授权；
+使用LIGHT CHASER的过程中，如遇见任何问题，请联系我。对提出真实有效反馈的用户将会获得LIGHT CHASER Pro的15天免费授权。
 
 你可以通过以下方式联系到我：
 
@@ -29,7 +29,7 @@
 
 <div style="display: flex;flex-wrap: wrap; justify-content: flex-start; align-items: stretch; ">
     <div style="width: 100%; height:500px; flex-grow: 0;min-width: 100px;margin: 10px;">
-         <iframe src="//player.bilibili.com/player.html?isOutside=true&aid=1404789749&bvid=BV1Cr421j7Xs&cid=1551785121&p=1" scrolling="no" border="0" frameborder="no" style="width: 100%; height: 100%;" framespacing="0" allowfullscreen="true"></iframe>
+         <iframe src="//player.bilibili.com/player.html?isOutside=true&aid=1404789749&bvid=BV1Cr421j7Xs&cid=1551785121&p=1&autoplay=0" scrolling="no" border="0" frameborder="no" style="width: 100%; height: 100%;" framespacing="0" allowfullscreen="true"></iframe>
     </div>
 </div>
 
@@ -37,6 +37,6 @@
 
 <div style="display: flex;flex-wrap: wrap; justify-content: flex-start; align-items: stretch; ">
     <div style="width: 100%; height:500px; flex-grow: 0;min-width: 100px;margin: 10px;">
-         <iframe src="//player.bilibili.com/player.html?isOutside=true&aid=1653746118&bvid=BV1NE421j7ai&cid=1518069867&p=1" scrolling="no" border="0" frameborder="no" style="width: 100%; height: 100%;" framespacing="0" allowfullscreen="true"></iframe>
+         <iframe src="//player.bilibili.com/player.html?isOutside=true&aid=1653746118&bvid=BV1NE421j7ai&cid=1518069867&p=1&autoplay=0" scrolling="no" border="0" frameborder="no" style="width: 100%; height: 100%;" framespacing="0" allowfullscreen="true"></iframe>
     </div>
 </div>

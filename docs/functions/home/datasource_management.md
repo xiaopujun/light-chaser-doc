@@ -4,7 +4,7 @@
 
 数据源管理是LIGHT CHASER中外部公共数据的统一管理入口，你可以在这里操作项目中使用的数据源。目前基础的数据库数据源在开源版和Pro版中都有支持。
 
-而后续计划中LIGHT CHASER会支持更多的数据源，包括 API、MongoDB、Redis、国产关系型数据库、Excel、JSON、WebSocket等等
+后续计划中LIGHT CHASER会支持更多的数据源，包括 API、MongoDB、Redis、国产关系型数据库、Excel、JSON、WebSocket等等
 
 > 数据源管理需要后端服务的支撑，没有后端服务则数据源管理无法使用
 

@@ -24,6 +24,28 @@
             --link-color: #2b95ff;
         }
 
+        /* 对所有滚动条应用样式 */
+        body {
+            scrollbar-width: thin;
+            scrollbar-color: #41525c #41525c;
+        }
+
+        /* Webkit 浏览器 */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #283339;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: #41525c;
+            border-radius: 10px;
+            border: 0;
+        }
+
+
         .nav {
             margin-top: 46px;
             --text-color-base: #c6c6c6;
@@ -62,7 +84,9 @@
     window.$docsify = {
         loadSidebar: true,
         coverpage: true,
-        onlyCover: true,
+        auto2top: true,
+        // onlyCover: true,
+        loadSidebar: 'sidebar.md',
         subMaxLevel: 1,
         name: 'LIGHT CHASER',
         count: {
