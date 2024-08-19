@@ -15,10 +15,27 @@
           content="light,chaser,light chaser,LIGHT,LIGHT CHASER,数据,可视化,数据可视化,大屏可视化,看板,大屏看板,数据看板,编辑器,web编辑器,web设计器,设计器,拖拽,可拖拽,可视化图表,可视化工具,追光者设计器,追光者,react大屏,react大屏设计器,react数据可视化,数字孪生">
     <!-- Theme: Simple Dark -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple-dark.css">
+    <link rel="stylesheet" href="https://unpkg.com/docsify-toc@1.0.0/dist/toc.css">
+
     <style>
 
         :root {
             --search-padding: 0 10px;
+        }
+
+        .nav {
+            margin-top: 46px;
+            --text-color-base: #c6c6c6;
+        }
+
+        .page_toc ul {
+            margin-top: 0;
+            padding-left: 10px;
+            line-height: 35px;
+        }
+
+        .page_toc ul li a {
+            font-weight: 500;
         }
 
     </style>
@@ -39,11 +56,8 @@
         loadSidebar: true,
         coverpage: true,
         onlyCover: true,
-        subMaxLevel: 3,
+        subMaxLevel: 1,
         name: 'LIGHT CHASER',
-        alias: {
-            '/.*/_sidebar.md': '/_sidebar.md'
-        },
         count: {
             countable: true,
             position: 'top',
@@ -70,7 +84,12 @@
             // 避免搜索索引冲突
             // 同一域下的多个网站之间
             namespace: 'website-1',
-        }
+        },
+        toc: {
+            scope: '.markdown-section',
+            headings: 'h2, h3, h4',
+            title: '章节目录',
+        },
     }
 </script>
 <!-- Docsify v4 -->
@@ -81,6 +100,8 @@
 <script src="//unpkg.com/docsify-count/dist/countable.js"></script>
 <script src="//cdn.jsdelivr.net/npm/docsify-pagination/dist/docsify-pagination.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+<script src="resource/js/docsify-sidebar-collapse.js"></script>
+<script src="//unpkg.com/docsify-toc@1.0.0/dist/toc.js"></script>
 
 <script src="//cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-typescript.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
