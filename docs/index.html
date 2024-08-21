@@ -14,7 +14,7 @@
     <meta name="keywords"
           content="light,chaser,light chaser,LIGHT,LIGHT CHASER,数据,可视化,数据可视化,大屏可视化,看板,大屏看板,数据看板,编辑器,web编辑器,web设计器,设计器,拖拽,可拖拽,可视化图表,可视化工具,追光者设计器,追光者,react大屏,react大屏设计器,react数据可视化,数字孪生">
     <!-- Theme: Simple Dark -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple-dark.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0.9.0/dist/css/theme-simple-dark.css">
     <link rel="stylesheet" href="https://unpkg.com/docsify-toc@1.0.0/dist/toc.css">
 
     <style>
@@ -88,10 +88,12 @@
         loadSidebar: true,
         coverpage: true,
         auto2top: true,
-        // onlyCover: true,
         loadSidebar: 'sidebar.md',
         subMaxLevel: 1,
         name: 'LIGHT CHASER',
+        alias: {
+            '/.*/sidebar.md': '/sidebar.md'
+        },
         count: {
             countable: true,
             position: 'top',
@@ -128,7 +130,7 @@
 </script>
 <!-- Docsify v4 -->
 <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
-<script src="//cdn.jsdelivr.net/npm/docsify-themeable@0/dist/js/docsify-themeable.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/docsify-themeable@0.9.0/dist/js/docsify-themeable.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
 <script src="//unpkg.com/docsify-count/dist/countable.js"></script>
