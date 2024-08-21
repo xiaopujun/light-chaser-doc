@@ -14,7 +14,7 @@
     <meta name="keywords"
           content="light,chaser,light chaser,LIGHT,LIGHT CHASER,数据,可视化,数据可视化,大屏可视化,看板,大屏看板,数据看板,编辑器,web编辑器,web设计器,设计器,拖拽,可拖拽,可视化图表,可视化工具,追光者设计器,追光者,react大屏,react大屏设计器,react数据可视化,数字孪生">
     <!-- Theme: Simple Dark -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0.9.0/dist/css/theme-simple-dark.css">
+    <link rel="stylesheet" href="resource/css/theme-simple-dark.css">
     <link rel="stylesheet" href="https://unpkg.com/docsify-toc@1.0.0/dist/toc.css">
 
     <style>
@@ -48,6 +48,16 @@
         .sidebar .app-name a {
             font-weight: 500;
         }
+
+        .sidebar-nav li > a {
+            background: var(--sidebar-nav-pagelink-background) !important;
+        }
+
+        /*.sidebar-nav li:has(.active) > a[href^="/"]:not([href*="?id="]):not(:only-child),*/
+        /*.sidebar-nav li:has(.active) > a[href^="#/"]:not([href*="?id="]):not(:only-child) {*/
+        /*    !* 为符合条件的链接设置背景 *!*/
+        /*    background: var(--sidebar-nav-pagelink-background--loaded, var(--sidebar-nav-pagelink-background--loaded, var(--sidebar-nav-pagelink-background))) !important;*/
+        /*}*/
 
         .nav {
             margin-top: 46px;
