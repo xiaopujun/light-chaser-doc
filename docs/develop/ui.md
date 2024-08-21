@@ -401,11 +401,7 @@ export default function Demo() {
         tip: '这是一个测试',
         value: '测试值',
         config: {
-            prefix: '前缀',
-            suffix: '后缀',
             placeholder: '请输入',
-            minLength: 0,
-            maxLength: 10,
             disabled: false,
         }
     }
@@ -428,11 +424,7 @@ export default function Demo() {
 | --- | --- | --- | --- |
 | label | string | - | 控件标题 |
 | tip | string | - | 控件提示信息 |
-| prefix | string | - | 前缀 |
-| suffix | string | - | 后缀 |
 | placeholder | string | - | 输入框提示信息 |
-| minLength | number | - | 输入框最小长度 |
-| maxLength | number | - | 输入框最大长度 |
 | disabled | boolean | false | 是否禁用 |
 | onChange | (data: string) => void | - | 输入框值变更回调函数 |
 
@@ -452,8 +444,6 @@ export default function Demo() {
         tip: '这是一个数值输入框',
         value: '测试值',
         config: {
-            prefix: '前缀',
-            suffix: '后缀',
             min: 0,
             max: 100,
             step: 1,
@@ -479,8 +469,6 @@ export default function Demo() {
 | --- | --- | --- | --- |
 | label | string | - | 控件标题 |
 | tip | string | - | 控件提示信息 |
-| prefix | string | - | 前缀 |
-| suffix | string | - | 后缀 |
 | min | string | - | 输入框最小值 |
 | max | number | - | 输入框最大值 |
 | step | number | - | 输入框步长 |
