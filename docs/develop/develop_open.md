@@ -1,4 +1,34 @@
-> 注: 本文主要针对开发者
+# 接入自定义组件（开源版）
+
+> LIGHT CHASER二次开发需要熟悉前端相关技术栈，包括html、css、js、React、Vite、TypeScript、pnpm。自定义组件前请确保你已经掌握了相关技术栈
+
+> LIGHT CHASER使用pnpm作为包管理器，为确保兼容性，请使用pnpm进行依赖管理
+
+## 环境准备
+
+开源版接入自定义组件需要依赖于源码，并准备好相关的开发环境。进入正式开发前请确保你已经准备好了如下环境
+
+1. Node.js环境，推荐使用Node.js 推荐使用18往上的版本，作者使用的版本为v20.16.0
+2. pnpm包管理器，若没有，请使用`npm install -g pnpm`进行安装
+3. LIGHT
+   CHASER源代码。代码在[GitHub](https://github.com/xiaopujun/light-chaser)、[Gitee](https://gitee.com/xiaopujun/light-chaser)
+   均有开源，可自行克隆下载
+
+#### 安装依赖
+
+准备好上述环境后，将项目源码克隆到本地后使用`pnpm i`安装依赖
+
+![img.png](安装依赖.png)
+
+#### 启动项目
+
+依赖安装完毕后，使用`pnpm dev`启动项目并访问`http://localhost:5173`即可查看项目效果
+
+![启动项目.png](启动项目.png)
+
+![启动效果.png](启动效果.png)
+
+看到此页面后，项目已经在你本地启动了，你可以尝试使用它。这是接入自定义组件的前提条件
 
 ## 核心文件及接口概念
 
@@ -19,13 +49,13 @@
 
 ![custom-component.png](https://picdl.sunbangyan.cn/2023/11/05/a5cc56bdd239099c5585a4b82cedbc71.png)
 
-### controller定义说明
+#### Controller定义说明
 
 controller接口为LIGHT CHASER自定义组件接入的核心接口之一，他定义操作自定义组件生命周期的一系列标准方法。包括创建组件、修改组件配置，触发组件重新渲染等。其详细的定义如下：
 
 > 注：controller存在一个抽象接口的继承体系，其中AbstractController是最顶级的抽象接口，其下为了功能扩展会派生出一些子接口：其中最为重要的便是AbstractDesignerController
 
-#### AbstractController定义
+**AbstractController定义**
 
 ```ts
 export interface UpdateOptions {
@@ -95,7 +125,7 @@ export default AbstractController;
 
 ```
 
-#### AbstractDesignerController定义
+**AbstractDesignerController定义**
 
 ```ts
 /**
@@ -179,7 +209,7 @@ export default AbstractDesignerController;
 
 ```
 
-### definition定义说明
+#### Definition定义说明
 
 definition.ts 是定义组件所有基础信息和初始化数据的文件，其完整结构如下：
 
@@ -283,7 +313,7 @@ export abstract class AbstractDefinition<C extends AbstractController = Abstract
 }
 ```
 
-**如上，我们介绍了接入自定义组件过程中最重要的两个核心文件controller.ts和definition.ts，请务必重点理解这两个文件的作用和使用方法。**
+如上，我们介绍了接入自定义组件过程中最重要的两个核心文件controller.ts和definition.ts，请务必重点理解这两个文件的作用和使用方法。
 
 ## 接入自定义组件
 
@@ -291,7 +321,7 @@ export abstract class AbstractDefinition<C extends AbstractController = Abstract
 
 ### 准备工作
 
-1. 请按照 [快速开始](/start.md) 章节步骤，将项目克隆到本地运行起来。
+1. 请按照 [环境准备](/develop/develop_open?id=%e7%8e%af%e5%a2%83%e5%87%86%e5%a4%87) 章节步骤，将项目克隆到本地运行起来。
 2. 在src/comps目录下任意位置新建一个文件夹，例如：src/lc/base-color-block（这个文件夹将用于存放所有与你组件相关的信息）
 3. 准备好组件缩略图放在src/lc/base-color-block目录下，例如：src/lc/base-color-block/base-color-block.png
 
@@ -364,7 +394,8 @@ export default BaseColorBlockComponent;
 
 ### 第二步：实现配置组件
 
-> 说明：配置组件使用了json schema的解析组件。该组件的使用下一节会有详细介绍。若不喜欢这种形式，也可以使用普通React组件的方式处理配置项。
+> 配置组件使用了json schema方式动态生成配置面板。详细信息请参考[组件库章节](develop/ui.md)。
+> 若不喜欢这种形式，你也可以使用普通React组件的方式处理配置项。不过强烈建议使用json schema。此种方式效率更高，并且UI风格统一
 
 ```tsx
 import React from 'react';
@@ -622,8 +653,9 @@ export default class BaseColorBlockDefinition extends AbstractDefinition<BaseCol
 
 经过上面的所有步骤后，你的文件夹下应该有如下文件：
 
-![](/images/接入组件文件结构.png)
+![接入组件文件结构](接入组件文件结构.png)
 
 检查无误后启动你的开发环境，剩下的交给设计器，他会扫描并加载你的组件到设计器中。打开浏览器访问地址，你应该可以看到你的组件已经接入到设计器中了。
 
-![](/images/接入完成预览图.png)
+![接入完成预览图](接入完成预览图.png)
+

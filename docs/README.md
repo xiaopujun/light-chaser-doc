@@ -4,7 +4,8 @@
 
 感谢关注和使用 LIGHT CHASER 产品。
 
-使用LIGHT CHASER的过程中，如遇见任何问题，请联系我。对提出真实有效反馈的用户将会获得LIGHT CHASER Pro的15天免费授权。
+使用LIGHT CHASER的过程中，如遇见任何问题，请联系我。提出真实有效反馈并帮助产品得到改进的用户将会获得LIGHT CHASER
+Pro的30天免费授权。
 
 你可以通过以下方式联系到我：
 

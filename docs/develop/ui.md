@@ -2,7 +2,7 @@
 
 LIGHT CHASER 配置组件库 - JSON Schema UI 是一套用于组件配置项的组件库，它可用于快速生成组件的配置项面板。
 
-![](images/json-schema样例.png)
+![](../images/json-schema样例.png)
 
 > 为什么要使用组件配置项组件库？
 
@@ -77,7 +77,7 @@ export default function DemoMain() {
 
 仅需上面简单的配置即可解析渲染得到如下的配置面板
 
-![](images/json-schema样例2.png)
+![](../images/json-schema样例2.png)
 
 ## schema数据结构
 
@@ -255,7 +255,7 @@ const schema: Control = {
 
 ### 手风琴
 
-![手风琴](images/手风琴.png)
+![手风琴](../images/手风琴.png)
 
 > 示例代码
 
@@ -299,7 +299,7 @@ export default function Demo() {
 
 ### 按钮
 
-![按钮](images/按钮.png)
+![按钮](../images/按钮.png)
 
 > 示例代码
 
@@ -333,7 +333,7 @@ export default function DemoMain() {
 
 ### 网格布局
 
-![grid布局](images/grid布局.png)
+![grid布局](../images/grid布局.png)
 
 > 示例代码
 
@@ -387,7 +387,7 @@ export default function Demo() {
 
 ### 输入框
 
-![输入框](images/输入框.png)
+![输入框](../images/输入框.png)
 
 
 > 示例代码
@@ -438,7 +438,7 @@ export default function Demo() {
 
 ### 数字输入框
 
-![数字输入框](images/数字输入框.png)
+![数字输入框](../images/数字输入框.png)
 
 
 > 示例代码
@@ -489,7 +489,7 @@ export default function Demo() {
 
 ### 单选框
 
-![单选框](images/单选框.png)
+![单选框](../images/单选框.png)
 
 > 示例代码
 
@@ -535,7 +535,7 @@ export default function Demo() {
 
 ### 下拉框
 
-![下拉框](images/下拉框.png)
+![下拉框](../images/下拉框.png)
 
 > 示例代码
 
@@ -583,7 +583,7 @@ export default function Demo() {
 
 ### 开关
 
-![开关](images/开关.png)
+![开关](../images/开关.png)
 
 > 示例代码
 
@@ -624,7 +624,7 @@ export default function Demo() {
 
 ### 仅文本
 
-![仅文本](images/仅文本.png)
+![仅文本](../images/仅文本.png)
 
 > 示例代码
 
@@ -660,7 +660,7 @@ export default function Demo() {
 
 ### 文本域
 
-![文本域](images/文本域.png)
+![文本域](../images/文本域.png)
 
 > 示例代码
 
@@ -697,7 +697,7 @@ export default function Demo() {
 
 ### 滑块
 
-![滑块](images/滑块.png)
+![滑块](../images/滑块.png)
 
 > 示例代码
 
@@ -737,7 +737,7 @@ export default function Demo() {
 
 ### 按钮组
 
-![按钮组](images/按钮组.png)
+![按钮组](../images/按钮组.png)
 
 > 示例代码
 
@@ -789,7 +789,7 @@ export default function Demo() {
 
 ### 代码编辑器
 
-![代码编辑器](images/代码编辑器.png)
+![代码编辑器](../images/代码编辑器.png)
 
 > 示例代码
 
@@ -834,7 +834,7 @@ export default function Demo() {
 
 ### 颜色选择器
 
-![颜色选择器](images/颜色选择器.png)
+![颜色选择器](../images/颜色选择器.png)
 
 > 示例代码
 
@@ -877,7 +877,7 @@ export default function Demo() {
 
 ### 颜色组选择器
 
-![颜色组选择器](images/颜色组选择器.png)
+![颜色组选择器](../images/颜色组选择器.png)
 
 > 示例代码
 
@@ -918,7 +918,7 @@ export default function Demo() {
 
 ### 颜色模式选择器
 
-![颜色模式选择器](images/颜色模式选择器.png)
+![颜色模式选择器](../images/颜色模式选择器.png)
 
 > 示例代码
 
@@ -955,7 +955,7 @@ export default function Demo() {
 
 ### 控件组
 
-![控件组](images/控件组.png)
+![控件组](../images/控件组.png)
 
 > 示例代码
 
@@ -1016,7 +1016,7 @@ export default function Demo() {
 
 ### 卡片面板
 
-![卡片面板](images/卡片面板.png)
+![卡片面板](../images/卡片面板.png)
 
 > 示例代码
 
