@@ -34,5 +34,6 @@
 * [产品部署](deploy/main.md)
     * [开源版](deploy/deploy_open.md)
     * [Pro版](deploy/deploy_pro.md)
+    * [Docker部署](deploy/deploy_docker.md)
 * [常见问题](question/question.md)
 * [更新日志](log/log.md)

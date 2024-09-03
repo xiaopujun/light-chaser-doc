@@ -1,4 +1,4 @@
-> light chaser的前后端镜像均上传在docekr
+> light chaser的前后端镜像均上传在docker
 > hub上，可以通过以下命令拉取镜像。你可以访问[Docekr官网](https://hub.docker.com/search?q=light-chaser)查看并获取docker镜像
 
 > 注：使用docker部署前请确保已经安装docker服务，并熟练使用docker命令
@@ -136,6 +136,5 @@ server {
 ```
 
 到此，你已经成功部署了LIGHT CHASER的前端服务
-
 
 现在你可以通过访问你的宿主机ip:80访问LIGHT CHASER并使用它了
