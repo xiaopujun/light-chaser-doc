@@ -1,3 +1,47 @@
+## 1.4.0
+
+[查看详情](https://github.com/xiaopujun/light-chaser/releases/tag/1.5.0)
+
+**Features.**
+
+1. 蓝图逻辑节点支持异步逻辑
+2. 基础文本组件支持动态数据
+3. API数据源请求使用原生结果，即不再二次封装(broken change)
+4. 画布自适应增加原始尺寸选项
+5. 新增双击图层打开组件配置项面板
+
+**Bug Fixes:**
+
+1. 修复颜色选择器相关bug
+2. 修复g2plot系列图表图例无法显示和隐藏的bug
+3. 修复代码编辑器相关bug
+4. 修复蓝图节点保存后重新打开，节点配置丢失的bug
+5. 修复代码编辑器放大后仍然显示label的bug
+6. 修复饼图在画布缩放之后，事件焦点产生偏移的bug
+7. 修复按住shift点击已选中图层导致页面错误的bug
+8. 修复双击分组图层弹出面板空白的bug
+
+**Enhancement:**
+
+1. 优化代码结构
+2. UI界面优化
+
+## 1.4.0
+
+[查看详情](https://github.com/xiaopujun/light-chaser/releases/tag/1.4.0)
+
+**Features.**
+
+1. 代码编辑器增加放大弹框
+
+**Bug Fixes:**
+
+1. 修复已知功能bug
+
+**Enhancement:**
+
+1. 优化UI界面
+
 ## 1.3.0
 
 [查看详情](https://github.com/xiaopujun/light-chaser/releases/tag/1.3.0)

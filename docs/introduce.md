@@ -30,8 +30,9 @@ LIGHT CHASER是一款基于React18、Vite5、TypeScript5等前沿技术栈开发
 | 静态数据           | <span style="color:#00FF10FF"><b>√</b><span> | <span style="color:#00FF10FF"><b>√</b><span>  |
 | API数据          | <span style="color:#00FF10FF"><b>√</b><span> | <span style="color:#00FF10FF"><b>√</b><span>  |
 | Docker部署       | <span style="color:#00FF10FF"><b>√</b><span> | <span style="color:#00FF10FF"><b>√</b><span>  |
-| API管理          | <span style="color:#FF0000FF"><b>×</b><span> | 开发中                                           |
-| 全局变量           | <span style="color:#FF0000FF"><b>×</b><span> | 开发中                                           |
+| API管理          | <span style="color:#FF0000FF"><b>×</b><span> | <span style="color:#00FF10FF"><b>√</b><span>  |
+| 全局变量           | <span style="color:#FF0000FF"><b>×</b><span> | <span style="color:#00FF10FF"><b>√</b><span>  |
+| 发布/加密发布        | <span style="color:#FF0000FF"><b>×</b><span> | <span style="color:#00FF10FF"><b>√</b><span>  |
 | GIS            | <span style="color:#FF0000FF"><b>×</b><span> | 开发中                                           |
 | 3D模型           | <span style="color:#FF0000FF"><b>×</b><span> | 开发中                                           |
 | 视频流            | m3u8/flv                                     | m3u8/flv                                      |
