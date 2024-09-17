@@ -1,4 +1,4 @@
-## 1.4.0
+## 1.5.0
 
 [查看详情](https://github.com/xiaopujun/light-chaser/releases/tag/1.5.0)
 
