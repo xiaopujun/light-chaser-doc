@@ -5,3 +5,4 @@
 
 [GitHub](https://github.com/xiaopujun/light-chaser)
 [Gitee](https://gitee.com/xiaopujun/light-chaser)
+[开始](/introduce)
