@@ -11,6 +11,7 @@
         * [资源库](functions/main_desiner/resource_lib.md)
         * [过滤器](functions/main_desiner/filter.md)
         * [图层](functions/main_desiner/layer.md)
+        * [全局变量](functions/main_desiner/global_variable.md)
         * [画布](functions/main_desiner/canvas.md)
         * [主题](functions/main_desiner/theme.md)
         * [导入导出](functions/main_desiner/export_import.md)

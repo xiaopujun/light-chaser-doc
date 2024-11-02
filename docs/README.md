@@ -22,7 +22,7 @@ Pro的30天免费授权。
 - [哔哩哔哩](https://space.bilibili.com/29136350?spm_id_from=333.1007.0.0)
 - [抖音号197435661](https://www.douyin.com/user/MS4wLjABAAAAFidKgCHz-sAX6fJAAzBjFFbg6sVdS7IN3lYc2-qJA_Q)
 - [LIGHT CHASER 在线体验 GitHub Page](https://xiaopujun.github.io/light-chaser-app/#)
-- [LIGHT CHASER 在线体验(Pro版本) 账:24b017fe 密:24b017fe](http://www.lcdesigner.cn/)
+- [LIGHT CHASER 在线体验(Pro版本)](http://www.lcdesigner.cn/home/server)
 
 ## 实机演示
 

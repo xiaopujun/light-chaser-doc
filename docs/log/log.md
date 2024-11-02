@@ -1,3 +1,13 @@
+## 1.6.0
+
+[查看详情](https://github.com/xiaopujun/light-chaser/releases/tag/1.6.0)
+
+1. 修复A组件渲染完毕后触发蓝图时间无法联动B组件的bug
+2. 修复在线项目报错的bug
+3. 优化mac端快捷键设置
+4. 优化组件列表样式
+5. 开放图片上传3M上限
+
 ## 1.5.0
 
 [查看详情](https://github.com/xiaopujun/light-chaser/releases/tag/1.5.0)
