@@ -37,6 +37,8 @@ LIGHT CHASER是一款基于React18、Vite5、TypeScript5等前沿技术栈开发
 | 3D模型           | <span style="color:#FF0000FF"><b>×</b><span> | 开发中                                           |
 | 视频流            | m3u8/flv                                     | m3u8/flv                                      |
 | 数据库数据          | MySQL、SQL server、<br/>Oracle、PostgreSQL      | MySQL、SQL server、<br/>Oracle、PostgreSQL、（开发中） |
+| WebSocket      | <span style="color:#FF0000FF"><b>×</b><span> | <span style="color:#00FF10FF"><b>√</b><span>  |
+| mqtt           | <span style="color:#FF0000FF"><b>×</b><span> | <span style="color:#00FF10FF"><b>√</b><span>  |
 | 自定义ECharts系列图表 | <span style="color:#FF0000FF"><b>×</b><span> | <span style="color:#00FF10FF"><b>√</b><span>  |
 | 多页面交互(大屏组件)    | <span style="color:#FF0000FF"><b>×</b><span> | <span style="color:#00FF10FF"><b>√</b><span>  |
 | 用户/权限管理        | <span style="color:#FF0000FF"><b>×</b><span> | <span style="color:#00FF10FF"><b>√</b><span>  |
