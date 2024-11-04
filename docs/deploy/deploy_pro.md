@@ -179,7 +179,7 @@ light-chaser:
 java -javaagent:lc-server-0.0.2-encrypted.jar -jar lc-server-0.0.2-encrypted.jar --spring.config.location=application.yml文件所在路径
 ```
 
-常规部署完毕，根据nginx配置的ip地址和端口，即可访问到LIGHT CHASER PRO
+常规部署完毕，根据nginx配置的ip地址和端口，即可访问到LIGHT CHASER PRO. 默认账户 admin / 123456
 
 > 注：很多使用宝塔等自动化部署工具，会自带应用防火墙拦截，请确保LC所使用的端口及路由处于放行状态
 
@@ -262,5 +262,5 @@ docker compose up  # 此命令将显示的启动前后端容器，并将日志�
 docker compose up -d # 此命令将后台启动前后端容器
 ```
 
-启动完毕，根据nginx配置的ip地址和端口，即可访问到LIGHT CHASER PRO
+启动完毕，根据nginx配置的ip地址和端口，即可访问到LIGHT CHASER PRO。 默认账户 admin / 123456
 
