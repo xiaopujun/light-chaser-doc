@@ -158,7 +158,7 @@ logging:
     cn.jay.repository: info
 
 light-chaser:
-  license: C:/Users/DAGU/Desktop/license # 授权文件路径，加压license.zip后的文件所放置额路径
+  license: C:/Users/DAGU/Desktop/license # license授权文件路径，license.zip解压后的文件所放置的路径
   resource-path:
     root: D:/project/light-chaser-server # 项目资源根目录
     image: /static/images # 项目产生的图片存放目录
