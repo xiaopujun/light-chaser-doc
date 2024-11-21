@@ -58,6 +58,11 @@ npm install -g light-chaser-cli
 
 当你的组件编写测试完成之后，使用`light-chaser-cli build`命令打包组件，会在dist目录下生成一个组件包。
 
+打包命令：
+
+- `light-chaser-cli build`：打包所有组件
+- `light-chaser-cli build <componentName>`：打包指定组件，componentName为组件所在的文件夹名称
+
 ![打包组件.png](打包组件.png)
 
 ![上传组件.png](上传组件.png)
