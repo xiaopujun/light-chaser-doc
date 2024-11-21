@@ -61,7 +61,7 @@ npm install -g light-chaser-cli
 打包命令：
 
 - `light-chaser-cli build`：打包所有组件
-- `light-chaser-cli build <componentName>`：打包指定组件，componentName为组件所在的文件夹名称
+- `light-chaser-cli build <componentName>`：打包指定组件，componentName为组件所在的文件夹名称。多个componentName之间用","分隔
 
 ![打包组件.png](打包组件.png)
 
