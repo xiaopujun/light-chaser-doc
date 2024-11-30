@@ -28,6 +28,7 @@
         * [逻辑节点](functions/blue_print/logic_node.md)
         * [全局变量](functions/blue_print/global_variable.md)
     * [发布预览](functions/view/preview.md)
+    * [演示模式](functions/pure_demo/pure_demo.md)
 * [组件开发](develop/index.md)
     * [开源版](develop/develop_open.md)
     * [Pro版](develop/develop_pro.md)
